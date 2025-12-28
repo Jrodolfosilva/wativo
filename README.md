@@ -1,70 +1,73 @@
-🚀 Wativo
-Wativo é um painel de automação para WhatsApp desenvolvido com Vite + TypeScript. O objetivo é oferecer uma solução simples, direta e eficiente para quem precisa gerenciar leads e realizar disparos em massa sem a complexidade de ferramentas empresariais robustas e caras.
+# Welcome to your Lovable project
 
-✨ Funcionalidades Principais
-O Wativo foca no que realmente importa para quem está começando a escalar suas vendas:
+## Project info
 
-🔌 Conexão Simplificada: Vincule sua conta de WhatsApp via QR Code de forma rápida.
+**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
 
-👥 Gestão de Leads: Cadastro, listagem e exportação de contatos (CSV/JSON).
+## How can I edit this code?
 
-📢 Disparo em Massa: Envie mensagens para sua lista de contatos com poucos cliques.
+There are several ways of editing your application.
 
-📅 Sequência de Mensagens: Programe fluxos de mensagens para nutrição de leads.
+**Use Lovable**
 
-⚡ Interface Minimalista: Painel leve e intuitivo focado em produtividade.
+Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
 
-🛠️ Tecnologias Utilizadas
-Frontend: React.js (ou Vue/Svelte, dependendo da sua escolha)
+Changes made via Lovable will be committed automatically to this repo.
 
-Build Tool: Vite
+**Use your preferred IDE**
 
-Linguagem: TypeScript
+If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
-Estilização: Tailwind CSS (Sugestão para agilizar o desenvolvimento)
+The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-Ícones: Lucide React / Phosphor Icons
+Follow these steps:
 
-🚀 Como começar
-Pré-requisitos
-Node.js (versão 18 ou superior)
+```sh
+# Step 1: Clone the repository using the project's Git URL.
+git clone <YOUR_GIT_URL>
 
-Gerenciador de pacotes (NPM, Yarn ou PNPM)
+# Step 2: Navigate to the project directory.
+cd <YOUR_PROJECT_NAME>
 
-Instalação
-Clone o repositório:
+# Step 3: Install the necessary dependencies.
+npm i
 
-Bash
-
-git clone https://github.com/seu-usuario/wativo.git
-Acesse a pasta do projeto:
-
-Bash
-
-cd wativo
-Instale as dependências:
-
-Bash
-
-npm install
-Inicie o servidor de desenvolvimento:
-
-Bash
-
+# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
-📈 Roadmap / Próximos Passos
-[ ] Integração com API de WhatsApp (ex: Evolution API ou Baileys).
+```
 
-[ ] Dashboard de métricas (mensagens enviadas vs. entregues).
+**Edit a file directly in GitHub**
 
-[ ] Sistema de templates de mensagens.
+- Navigate to the desired file(s).
+- Click the "Edit" button (pencil icon) at the top right of the file view.
+- Make your changes and commit the changes.
 
-[ ] Suporte a anexos (imagens e documentos) nos disparos.
+**Use GitHub Codespaces**
 
-🤝 Contribuindo
-Sinta-se à vontade para abrir Issues ou enviar Pull Requests. Toda ajuda para tornar o Wativo a ferramenta de disparo mais simples do mercado é bem-vinda!
+- Navigate to the main page of your repository.
+- Click on the "Code" button (green button) near the top right.
+- Select the "Codespaces" tab.
+- Click on "New codespace" to launch a new Codespace environment.
+- Edit files directly within the Codespace and commit and push your changes once you're done.
 
-📝 Licença
-Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
+## What technologies are used for this project?
 
-Aviso: Utilize ferramentas de automação com responsabilidade para evitar o banimento de números e garantir as melhores práticas de privacidade.
+This project is built with:
+
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
+
+## How can I deploy this project?
+
+Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+
+## Can I connect a custom domain to my Lovable project?
+
+Yes, you can!
+
+To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+
+Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
