@@ -4,20 +4,28 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { QrCode, Check, RefreshCw, Smartphone, Wifi, WifiOff } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { QrStatus, Whatsapp } from "./getApiWhatsApp";
 
 export function WhatsAppIntegration() {
+
   const [isConnected, setIsConnected] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [showQR, setShowQR] = useState(false);
+  const [showQR, setShowQR] = useState<QrStatus | boolean>(false);
 
-  const handleConnect = () => {
-    setIsLoading(true);
-    setShowQR(true);
-    
-    // Simulate QR code generation
-    setTimeout(() => {
+  const handleConnect = async(key:string) => {
+   
+    const whatsapp = new Whatsapp(key);
+    const qr: QrStatus = await whatsapp.initSession();
+
+    console.log(qr);
+
+    if(qr){
       setIsLoading(false);
-    }, 1500);
+      setIsConnected(true);
+      setShowQR(qr);
+    }
+   
+   
   };
 
   const handleSimulateConnect = () => {
@@ -80,19 +88,22 @@ export function WhatsAppIntegration() {
             <p className="text-sm text-muted-foreground mb-6 max-w-md mx-auto">
               Escaneie o QR Code com seu WhatsApp para conectar sua conta e começar a receber leads automaticamente.
             </p>
-            <Button variant="glow" onClick={handleConnect} disabled={isLoading}>
-              {isLoading ? (
-                <>
-                  <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
-                  Gerando QR Code...
-                </>
-              ) : (
-                <>
-                  <QrCode className="w-4 h-4 mr-2" />
-                  Gerar QR Code
-                </>
-              )}
-            </Button>
+            <form>
+              <input type="text" placeholder="5511999990000" required className="mr-4 mb-4 px-4 py-2 border border-muted rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
+              <Button variant="glow" onSubmit={() => handleConnect("99999999")} disabled={isLoading}>
+                {isLoading ? (
+                  <>
+                    <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
+                    Gerando QR Code...
+                  </>
+                ) : (
+                  <>
+                    <QrCode className="w-4 h-4 mr-2" />
+                    Gerar QR Code
+                  </>
+                )}
+              </Button>
+            </form>
           </div>
         )}
 

@@ -21,17 +21,11 @@ interface SidebarProps {
 
 const menuItems = [
   { id: "leads", label: "Leads", icon: Users },
-  { id: "integrations", label: "Integrações", icon: Plug },
-  { id: "ai-responder", label: "Atendente IA", icon: Bot },
-  { id: "sequences", label: "Sequências", icon: Mail },
   { id: "broadcast", label: "Envio em Massa", icon: Send },
-  { id: "ecommerce", label: "E-commerce", icon: ShoppingCart },
+  { id: "sequences", label: "Sequências", icon: Mail },
+  { id: "integrations", label: "Integrações", icon: Plug }
 ];
 
-const secondaryItems = [
-  { id: "analytics", label: "Análises", icon: BarChart3 },
-  { id: "settings", label: "Configurações", icon: Settings },
-];
 
 export function Sidebar({ activeTab, onTabChange }: SidebarProps) {
   const [collapsed, setCollapsed] = useState(false);
@@ -49,7 +43,7 @@ export function Sidebar({ activeTab, onTabChange }: SidebarProps) {
           <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
             <MessageSquare className="w-5 h-5 text-primary-foreground" />
           </div>
-          <span className="font-bold text-lg text-sidebar-foreground">WhatsApp CRM</span>
+          <span className="font-bold text-lg text-sidebar-foreground">WATIVO</span>
         </div>
         <button
           onClick={() => setCollapsed(!collapsed)}
@@ -93,32 +87,7 @@ export function Sidebar({ activeTab, onTabChange }: SidebarProps) {
           })}
         </div>
 
-        {/* Secondary Navigation */}
-        <div className="mt-8 pt-4 border-t border-sidebar-border space-y-1">
-          {secondaryItems.map((item) => {
-            const Icon = item.icon;
-            return (
-              <button
-                key={item.id}
-                onClick={() => onTabChange(item.id)}
-                className={cn(
-                  "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 group",
-                  activeTab === item.id
-                    ? "bg-primary/10 text-primary border border-primary/20"
-                    : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-                )}
-              >
-                <Icon className="w-5 h-5 flex-shrink-0 transition-transform group-hover:scale-110" />
-                <span className={cn(
-                  "font-medium transition-opacity",
-                  collapsed && "opacity-0 w-0 overflow-hidden"
-                )}>
-                  {item.label}
-                </span>
-              </button>
-            );
-          })}
-        </div>
+      
       </nav>
 
       {/* Footer */}
