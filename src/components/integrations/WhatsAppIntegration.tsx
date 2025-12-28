@@ -10,36 +10,50 @@ export function WhatsAppIntegration() {
 
   const [isConnected, setIsConnected] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [showQR, setShowQR] = useState<QrStatus | boolean>(false);
+  const [showQR, setShowQR] = useState<string | false>("");
 
-  const handleConnect = async(key:string) => {
+
+  const handleConnect = async(event?: React.FormEvent<HTMLFormElement>) => {
    
-    const whatsapp = new Whatsapp(key);
-    const qr: QrStatus = await whatsapp.initSession();
+    event?.preventDefault();
+    setIsLoading(true);
 
-    console.log(qr);
+    if(event){
+      const key = event.currentTarget.number?.value;
+      const whatsapp = new Whatsapp(key);
+      const qr: string = await whatsapp.initSession().finally(()=>{
+        setIsLoading(false);
+      });
 
-    if(qr){
-      setIsLoading(false);
-      setIsConnected(true);
-      setShowQR(qr);
+      if(qr){
+        setShowQR(qr);
+
+        
+      }   
+        teste()
+      
     }
+    
    
    
   };
 
-  const handleSimulateConnect = () => {
-    setIsConnected(true);
-    setShowQR(false);
-  };
 
-  const handleDisconnect = () => {
-    setIsConnected(false);
-    setShowQR(false);
-  };
+  function teste (){
+    setTimeout(() => {
+          console.log(showQR)
+        }, 10000);
+  }
+
 
   return (
     <Card variant="glass" className="animate-fade-in">
+
+       {showQR && <img src={`${showQR}`} />}
+
+
+
+
       <CardHeader>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -88,9 +102,9 @@ export function WhatsAppIntegration() {
             <p className="text-sm text-muted-foreground mb-6 max-w-md mx-auto">
               Escaneie o QR Code com seu WhatsApp para conectar sua conta e começar a receber leads automaticamente.
             </p>
-            <form>
-              <input type="text" placeholder="5511999990000" required className="mr-4 mb-4 px-4 py-2 border border-muted rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
-              <Button variant="glow" onSubmit={() => handleConnect("99999999")} disabled={isLoading}>
+            <form onSubmit={handleConnect}>
+              <input type="text" placeholder="5511999990000" id="number" name="number" required className="mr-4 mb-4 px-4 py-2 border border-muted rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
+              <Button variant="glow" disabled={isLoading}>
                 {isLoading ? (
                   <>
                     <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
@@ -114,15 +128,7 @@ export function WhatsAppIntegration() {
               <div className="w-48 h-48 bg-foreground rounded-xl p-3 mx-auto mb-4 relative overflow-hidden">
                 <div className="w-full h-full bg-background rounded-lg flex items-center justify-center">
                   <div className="grid grid-cols-8 gap-0.5">
-                    {Array.from({ length: 64 }).map((_, i) => (
-                      <div 
-                        key={i} 
-                        className={cn(
-                          "w-4 h-4 rounded-sm",
-                          Math.random() > 0.5 ? "bg-foreground" : "bg-transparent"
-                        )}
-                      />
-                    ))}
+                   
                   </div>
                 </div>
               </div>
@@ -134,10 +140,10 @@ export function WhatsAppIntegration() {
               Escaneie o código com seu WhatsApp
             </p>
             <div className="flex gap-2 justify-center">
-              <Button variant="outline" onClick={() => setShowQR(false)}>
+              <Button variant="outline" >
                 Cancelar
               </Button>
-              <Button variant="glow" onClick={handleSimulateConnect}>
+              <Button variant="glow" >
                 <Check className="w-4 h-4 mr-2" />
                 Simular Conexão
               </Button>
@@ -157,7 +163,7 @@ export function WhatsAppIntegration() {
                   <p className="text-sm text-muted-foreground">Conectado há 2 horas</p>
                 </div>
               </div>
-              <Button variant="outline" size="sm" onClick={handleDisconnect}>
+              <Button variant="outline" size="sm" >
                 Desconectar
               </Button>
             </div>

@@ -1,3 +1,5 @@
+import { error } from "console";
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 export type InitResponse = {
   error: boolean;
   message: string;
@@ -39,18 +41,18 @@ export class Whatsapp {
 
       const data = await qrcode.json();
 
-      setTimeout(() => {
-        this.buscarQrCode(data);
-      }, 2000);
+      return await this.buscarQrCode(data);
     } catch (error) {
       console.log(error);
-      return error;
+      return "Erro na requisição";
     }
   }
 
-  public async buscarQrCode(data: InitResponse): Promise<string | undefined> {
+  public async buscarQrCode(data: InitResponse): Promise<string> {
     const urlQR = data.qrcode.url;
     if (!urlQR) return;
+
+    await delay(2000); // Aguarda 2 segundos antes de fazer a requisição
 
     try {
       const response = await fetch(urlQR);
@@ -66,9 +68,12 @@ export class Whatsapp {
         return qrCodeBase64;
       } else {
         console.error("Imagem do QR Code não encontrada no HTML retornado.");
+        return "Imagem do QR Code não encontrada";
       }
     } catch (erro) {
       console.error("Erro na requisição:", erro);
+      return "Erro na requisição";
     }
   }
 }
+
